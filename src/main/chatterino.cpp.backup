@@ -1,0 +1,19 @@
+#include <TwitchClient/TwitchClient.h>
+
+// Add a method to check if the user is a Lead Moderator
+bool TwitchClient::isLeadModerator() const {
+    return getUser().isLeadModerator();
+}
+
+// Modify the method to handle Lead Moderators
+void TwitchClient::sendModerationCommand(const ChatMessage& message, ModerationCommand command) {
+    if (isLeadModerator()) {
+        // Handle Lead Moderator specific errors
+        if (command == ModerationCommand::Ban || command == ModerationCommand::Mute) {
+            // Log error or handle accordingly
+            return;
+        }
+    }
+    // Normal command handling
+    // ... existing code for non-lead moderators
+}
